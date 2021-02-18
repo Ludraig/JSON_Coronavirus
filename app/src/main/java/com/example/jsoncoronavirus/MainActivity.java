@@ -50,21 +50,36 @@ public class MainActivity extends AppCompatActivity {
             String url = "https://covid-19-data.p.rapidapi.com/totals";
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                     new Response.Listener<JSONObject>() {
-                @Override
-                        public void onResponse(JSONObject response){
-                    try{
-                        JSONObject confirmed = response.getJSONObject("confirmed");
-                        JSONObject critical = response.getJSONObject("critical");
-                        JSONObject deaths = response.getJSONObject("deaths");
-                        JSONObject recovered = response.getJSONObject("recovered")
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                JSONObject main_object = response.getJSONObject("properties");
+                                JSONArray array = response.getJSONArray("items");
+                                JSONObject object = array.getJSONObject(0);
+                                int confirmed = (int) Math.round(main_object.getDouble(("confirmed")));
+                                int deaths = (int) Math.round(main_object.getDouble(("deaths")));
+                                int critical = (int) Math.round(main_object.getDouble(("critical")));
+                                int recovered = (int) Math.round(main_object.getDouble(("recovered")));
+                                Calendar calendar = Calendar.getInstance();
+                                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEE, MMMM dd");
+                                String formatted_date = simpleDateFormat.format(calendar.getTime());
 
                                 textConf.setText(confirmed);
                                 textDead.setText(deaths);
                                 textCrit.setText(critical);
                                 textRecover.setText(recovered);
-                    }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
                 }
-                    }
-        }
+            }) ;
+            RequestQueue queue = Volley.newRequestQueue(this);
+            queue.add(jsonObjectRequest);
+        };
     }
 }

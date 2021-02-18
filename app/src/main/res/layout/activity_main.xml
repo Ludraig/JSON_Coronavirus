@@ -10,7 +10,7 @@
         android:id="@+id/textConf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Confirmed Cases"
+        android:text="@string/confirmed_cases"
         app:layout_constraintBottom_toTopOf="@+id/textCrit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +21,7 @@
         android:id="@+id/textCrit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Critical"
+        android:text="@string/critical"
         app:layout_constraintBottom_toTopOf="@+id/textDead"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +32,7 @@
         android:id="@+id/textDead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Deaths"
+        android:text="@string/deaths"
         app:layout_constraintBottom_toTopOf="@+id/textRecover"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,10 +43,20 @@
         android:id="@+id/textRecover"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Recovered"
+        android:text="@string/recovered"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.786" />
+
+    <TextView
+        android:id="@+id/Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/date"
+        app:layout_constraintBottom_toTopOf="@+id/textConf"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
